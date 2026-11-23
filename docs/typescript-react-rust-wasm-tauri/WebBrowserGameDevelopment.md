@@ -20,6 +20,7 @@ a:hover {
 - [x] AI統合（CLIP/ONNX）
 - [x] 物理演算設計
 - [x] パフォーマンス最適化戦略
+- [x] 公開手順ドキュメント
 - [ ] WebGPU ヘルパーライブラリ開発
 - [ ] CLIP統合例（完全実装）
 - [ ] 音声認識実装
@@ -75,6 +76,16 @@ a:hover {
 - [11. 推奨事項（2026年標準）](#11-推奨事項2026年標準)
 - [12. 技術選定まとめ](#12-技術選定まとめ)
 - [13. まとめ](#13-まとめ)
+- [14. Webゲームの公開手順](#14-webゲームの公開手順)
+  - [14.1 リリース用ビルドを作成](#141-リリース用ビルドを作成)
+  - [14.2 公開先を選ぶ](#142-公開先を選ぶ)
+  - [14.3 GitHubにアップロード](#143-githubにアップロード)
+  - [14.4 自動デプロイ設定](#144-自動デプロイ設定)
+  - [14.5 HTTPS必須](#145-https必須)
+  - [14.6 PWA化](#146-pwa化推奨)
+  - [14.7 あなたの構成なら](#147-あなたの構成なら)
+  - [14.8 プロトタイプ公開の価値](#148-プロトタイプ公開の価値)
+- [15. 次のステップ](#15-次のステップ)
 
 ---
 
@@ -2197,3 +2208,258 @@ Webブラウザでのゲーム開発は、2026年時点で以下の理由から�
 これらのテクノロジーを適切に組み合わせることで、**デスクトップゲームと遜色ないブラウザゲーム**を開発できます。
 
 特にノードベースエディタと CLIP を組み合わせた開発環境は、**現在の Web ゲーム業界の最先端に近いアーキテクチャ**です。
+
+---
+
+## 14. Webゲームの公開手順
+
+Webゲームの公開は、思っているより簡単です。
+
+**TypeScript + Rust + WebGPU** で開発する場合、現在は次の流れが主流です。
+
+```
+開発
+  ↓
+ビルド
+  ↓
+GitHubへPush
+  ↓
+自動デプロイ
+  ↓
+URL公開
+```
+
+### 14.1 リリース用ビルドを作成
+
+例えば Vite の場合：
+
+```bash
+npm run build
+```
+
+実行後、以下が生成されます：
+
+```
+dist/
+├─ index.html
+├─ assets/
+└─ ...
+```
+
+この `dist` フォルダがそのまま公開物になります。
+
+### 14.2 公開先を選ぶ
+
+**現在のおすすめ順位：**
+
+#### 🥇 Cloudflare Pages（最もおすすめ）
+
+```
+✓ 無料
+✓ 高速
+✓ 独自ドメイン可
+✓ GitHub連携
+```
+
+URL例：`https://mygame.pages.dev`
+
+#### 🥈 GitHub Pages（最も簡単）
+
+```
+✓ 無料
+✓ GitHubのみで完結
+✓ セットアップが最小限
+```
+
+URL例：`https://username.github.io/mygame/`
+
+#### 🥉 Netlify（初心者向け）
+
+```
+✓ 無料枠あり
+✓ ドラッグ&ドロップ公開可能
+✓ GUIが直感的
+```
+
+#### その他：Vercel（React系向け）
+
+```
+✓ Next.jsとの相性◎
+✓ エッジ関数対応
+```
+
+### 14.3 GitHubにアップロード
+
+```bash
+git init
+
+git add .
+
+git commit -m "first release"
+
+git push origin main
+```
+
+### 14.4 自動デプロイ設定
+
+**Cloudflare Pagesの場合：**
+
+```
+Create Project
+  ↓
+GitHub連携
+  ↓
+Repository選択
+  ↓
+Build Command
+   npm run build
+  ↓
+Output Directory
+   dist
+```
+
+保存するだけです。
+
+以降は `git push` するたびに自動更新されます。
+
+### 14.5 HTTPS必須
+
+**WebGPUを使う場合、HTTPS で公開する必要があります。**
+
+```
+✓ https://game.com
+✓ https://pages.dev
+✗ http://game.com
+```
+
+### 14.6 PWA化（推奨）
+
+最近のWebゲームでは **インストール可能** にすることが増えています。
+
+ユーザー側は **ホーム画面に追加** を押すだけで、見た目は普通のアプリになります。
+
+```
+ブラウザゲーム + ネイティブアプリ体験
+```
+
+PWA対応の例：
+
+```typescript
+// public/manifest.json
+{
+  "name": "MyGame",
+  "short_name": "Game",
+  "description": "2026年標準のWebゲーム",
+  "start_url": "/",
+  "display": "fullscreen",
+  "background_color": "#000000",
+  "theme_color": "#0066ff",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+```
+
+```typescript
+// src/main.tsx
+// Service Worker登録
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js');
+}
+```
+
+### 14.7 あなたの構成なら
+
+以前話していた構成：
+
+```
+React + TypeScript + Rust(WASM) + WebGPU + ONNX Runtime
+```
+
+以下がおすすめです。
+
+**全体構成：**
+
+```
+Frontend
+├─ React
+├─ Zustand
+└─ TypeScript
+
+Game Engine
+├─ Three.js
+└─ WebGPU
+
+AI
+├─ ONNX Runtime Web
+└─ CLIP
+
+Deploy
+├─ GitHub
+└─ Cloudflare Pages
+```
+
+**公開までの流れ：**
+
+```
+開発
+  ↓
+npm run build
+  ↓
+GitHub Push
+  ↓
+Cloudflare Pages 自動公開
+  ↓
+URL共有
+```
+
+### 14.8 プロトタイプ公開の価値
+
+個人開発なら、次のような用途に相性が良いです：
+
+**Steam出版前のプロトタイプ公開**
+- フィードバック収集
+- ゲームバランス調整
+- バグ発見
+
+**ノードベースSE作成ツール**
+- **URLだけで試してもらえる**
+- インストール不要
+- 即座にフィードバック取得
+
+**クリエイティブ系プロジェクト**
+- 画像生成AIツール
+- 動画編集補助
+- 音声処理エディタ
+
+**現在の主流：**
+
+> ツール系・クリエイティブ系プロジェクトでは、**まずWeb版を公開してフィードバックを集めるのが業界標準**になっています。
+
+あなたのプロジェクトは、
+
+- ✅ ノードベースエディタ
+- ✅ CLIP活用
+- ✅ ONNX Runtime統合
+- ✅ 画像・音声処理
+
+という要素を持つため、**Web版でのフィードバック収集が最も効率的**です。
+
+---
+
+## 15. 次のステップ
+
+1. **Web版の完成度を上げる** → Cloudflare Pagesで無料公開
+2. **ユーザーフィードバック収集** → 改善ポイント把握
+3. **Desktop版（Tauri）開発** → Rust Core再利用
+4. **AIモデル最適化** → CLIP / ONNX のプロファイリング
+5. **商用化検討** → Steamまたは独立配布
