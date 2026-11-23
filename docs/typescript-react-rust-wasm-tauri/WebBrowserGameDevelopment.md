@@ -3,12 +3,29 @@
 <style>
 a {
     text-decoration: none;
-    color: #0066ff;
+    color: #90CAF9;
 }
 a:hover {
     text-decoration: underline;
+    color: #FFFFFF;
 }
 </style>
+
+## TODO リスト
+
+ゲーム開発実装の進捗：
+
+- [x] 2026年トレンド分析
+- [x] WebGPU 基礎
+- [x] AI統合（CLIP/ONNX）
+- [x] 物理演算設計
+- [x] パフォーマンス最適化戦略
+- [ ] WebGPU ヘルパーライブラリ開発
+- [ ] CLIP統合例（完全実装）
+- [ ] 音声認識実装
+- [ ] ゲームエンジン統合例
+- [ ] マルチプレイ対応
+- [ ] プレイテスト実施
 
 ## 目次
 

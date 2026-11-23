@@ -3,12 +3,29 @@
 <style>
 a {
     text-decoration: none;
-    color: #0066ff;
+    color: #90CAF9;
 }
 a:hover {
     text-decoration: underline;
+    color: #FFFFFF;
 }
 </style>
+
+## TODO リスト
+
+Web版実装の進捗：
+
+- [x] アーキテクチャ設計
+- [x] WASM パッケージング
+- [x] TypeScript 統合
+- [x] Webpack/Vite 設定
+- [ ] 本番デプロイメント
+- [ ] CDN最適化
+- [ ] キャッシング戦略
+- [ ] PWA対応
+- [ ] オフライン機能
+- [ ] パフォーマンス計測
+- [ ] SEO最適化
 
 ## 目次
 

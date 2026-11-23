@@ -3,12 +3,29 @@
 <style>
 a {
     text-decoration: none;
-    color: #0066ff;
+    color: #90CAF9;
 }
 a:hover {
     text-decoration: underline;
+    color: #FFFFFF;
 }
 </style>
+
+## TODO リスト
+
+Rust Core 実装の進捗：
+
+- [x] アーキテクチャ設計
+- [x] ノード実行エンジン
+- [x] ワークフロー実行システム
+- [x] JSON Schema 定義
+- [x] ポーズ補正処理
+- [ ] エラーハンドリング実装
+- [ ] パフォーマンス最適化
+- [ ] ユニットテスト
+- [ ] インテグレーションテスト
+- [ ] ドキュメント例の充実
+- [ ] デバッグツール開発
 
 ## 目次
 
