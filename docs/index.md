@@ -3,10 +3,11 @@
 <style>
 a {
     text-decoration: none;
-    color: #0066ff;
+    color: #90CAF9;
 }
 a:hover {
     text-decoration: underline;
+    color: #FFFFFF;
 }
 </style>
 
