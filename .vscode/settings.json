@@ -1,0 +1,51 @@
+{
+    // Markdown
+    "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "markdown.editor.enabled": true,
+    "markdown.validate.enabled": true,
+    "markdown.extension.editing.linesPerBulletPoint": 2,
+    "markdown.experimental.tokenizersEnabled": true,
+
+    // Todo Tree
+    // 検出するTODOタグ
+    "todo-tree.general.tags": ["TODO", "FIXME", "BUG", "NOTE", "DOING", "DONE"],
+    // ファイル別ツリーに検出件数を表示する
+    "todo-tree.tree.showCountsInTree": true,
+    // Explorer上にTodo Treeビューを表示する
+    "todo-tree.tree.showInExplorer": true,
+    // ステータスバーに全件数を表示する
+    "todo-tree.general.statusBar": "total",
+    // ツリーをタグ別にグループ化する
+    "todo-tree.tree.groupBy": "tag",
+    // エディター内のタグを強調表示する
+    "todo-tree.highlights.enabled": true,
+    // 各タグの文字色とアイコン
+    "todo-tree.highlights.customHighlight": {
+        "TODO": {
+            "foreground": "#90CAF9",
+            "icon": "checklist"
+        },
+        "FIXME": {
+            "foreground": "#FFB74D",
+            "icon": "tools"
+        },
+        "BUG": {
+            "foreground": "#EF5350",
+            "icon": "bug"
+        },
+        "NOTE": {
+            "foreground": "#81C784",
+            "icon": "note"
+        },
+        "DOING": {
+            "foreground": "#FFD54F",
+            "icon": "sync"
+        },
+        "DONE": {
+            "foreground": "#B39DDB",
+            "icon": "check"
+        }
+    }
+}

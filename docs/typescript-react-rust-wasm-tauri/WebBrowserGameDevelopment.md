@@ -80,11 +80,25 @@ a:hover {
   - [14.1 リリース用ビルドを作成](#141-リリース用ビルドを作成)
   - [14.2 公開先を選ぶ](#142-公開先を選ぶ)
   - [14.3 GitHubにアップロード](#143-githubにアップロード)
-  - [14.4 自動デプロイ設定](#144-自動デプロイ設定)
-  - [14.5 HTTPS必須](#145-https必須)
-  - [14.6 PWA化](#146-pwa化推奨)
-  - [14.7 あなたの構成なら](#147-あなたの構成なら)
-  - [14.8 プロトタイプ公開の価値](#148-プロトタイプ公開の価値)
+  - [14.4 社内GitLabへアップロード](#144-社内gitlabへアップロード)
+    - [GitLab Pagesとは](#gitlab-pagesとは)
+    - [GitHub Pagesとの比較](#github-pagesとの比較)
+    - [Webゲームの公開も可能](#webゲームの公開も可能)
+    - [Rust + WASMも公開可能](#rust--wasmも公開可能)
+    - [社内利用のメリット](#社内利用のメリット)
+    - [リポジトリ自体はPrivateでも、Pagesだけ公開できる？](#リポジトリ自体はprivateでもpagesだけ公開できる)
+      - [パターン1: リポジトリ Private + Pages Public](#パターン1-リポジトリ-private--pages-public)
+      - [パターン2: リポジトリ Private + Pages 社内限定](#パターン2-リポジトリ-private--pages-社内限定)
+      - [パターン3: リポジトリ Private + Pages 認証必須](#パターン3-リポジトリ-private--pages-認証必須)
+      - [実際の運用例](#実際の運用例)
+      - [配信されるフロントエンドコードの注意点](#配信されるフロントエンドコードの注意点)
+      - [Webゲーム向けの推奨構成](#webゲーム向けの推奨構成)
+    - [事前確認](#事前確認)
+  - [14.5 自動デプロイ設定](#145-自動デプロイ設定)
+  - [14.6 HTTPS必須](#146-https必須)
+  - [14.7 PWA化](#147-pwa化推奨)
+  - [14.8 あなたの構成なら](#148-あなたの構成なら)
+  - [14.9 プロトタイプ公開の価値](#149-プロトタイプ公開の価値)
 - [15. 次のステップ](#15-次のステップ)
 
 ---
@@ -2300,7 +2314,249 @@ git commit -m "first release"
 git push origin main
 ```
 
-### 14.4 自動デプロイ設定
+### 14.4 社内GitLabへアップロード
+
+企業内でWebゲームや開発ツールを公開する場合は、GitHub Pagesではなく社内GitLab Pagesを利用するケースも多くあります。
+
+#### GitLab Pagesとは
+
+GitLab Pagesは、GitHub Pagesと同様に静的サイトを公開できる機能です。
+
+たとえば、次の技術で作成した成果物を公開できます。
+
+```text
+React
+├─ TypeScript
+└─ Three.js
+```
+
+リリース用ビルドを実行すると、公開用ファイルが生成されます。
+
+```text
+npm run build
+  ↓
+dist/
+```
+
+社内GitLabでは、このファイルをリポジトリからCI/CD経由で公開します。
+
+```text
+GitLab Repository
+  ↓
+GitLab CI/CD
+  ↓
+GitLab Pages
+```
+
+URLは、社内環境の設定によって次のような形式になります。
+
+```text
+https://pages.company.co.jp/mygame
+https://gitlab.company.co.jp/pages/mygame
+```
+
+実際のURL形式は、社内GitLab管理者の設定に従ってください。
+
+#### GitHub Pagesとの比較
+
+| 項目 | GitHub Pages | GitLab Pages |
+| --- | --- | --- |
+| 静的サイト公開 | ○ | ○ |
+| 独自ドメイン | ○ | ○ |
+| HTTPS | ○ | ○ |
+| CI/CD | GitHub Actions | GitLab CI |
+| 社内限定公開 | △ | ◎ |
+| VPN内公開 | △ | ◎ |
+
+企業内の閲覧権限やVPNとの組み合わせを重視する場合は、GitLab Pagesの方が管理しやすいことが多くあります。
+
+#### Webゲームの公開も可能
+
+React、Three.js、WebGPUで作成したゲームをビルドすると、次のような構成で出力できます。
+
+```text
+dist/
+├─ index.html
+├─ assets/
+└─ wasm/
+```
+
+これらをGitLab Pagesへ配置すれば、利用者はブラウザからURLへアクセスするだけでゲームを起動できます。
+
+```text
+ブラウザ
+  ↓
+URLへアクセス
+  ↓
+即プレイ
+```
+
+#### Rust + WASMも公開可能
+
+TypeScript、Rust、WebAssemblyの構成も、そのままGitLab Pagesで公開できます。生成された次のファイルは、通常の静的ファイルとして配信されます。
+
+```text
+.wasm
+.js
+.data
+```
+
+#### 社内利用のメリット
+
+社内向けゲームやツールは、次の流れで自動公開できます。
+
+```text
+社内GitLab
+  ↓
+自動ビルド
+  ↓
+Pages公開
+  ↓
+社員のみ閲覧
+```
+
+ノードベースSE作成ツールも、更新をすぐに共有できます。
+
+```text
+GitLabへPush
+  ↓
+CI/CD実行
+  ↓
+Pages更新
+```
+
+#### リポジトリ自体はPrivateでも、Pagesだけ公開できる？
+
+はい、設定によって可能な場合があります。ただし、GitLabのバージョンと管理者設定によって利用できる範囲が異なります。
+
+一般的な公開方法は、次の3パターンです。
+
+##### パターン1: リポジトリ Private + Pages Public
+
+```text
+Repository
+└─ Private
+
+GitLab Pages
+└─ Public
+```
+
+利用者はソースコードを閲覧できませんが、公開URLからWebゲームやツールを利用できます。
+
+```text
+https://game.company.jp
+```
+
+Webゲームを社外へ配布する場合に使われる構成です。
+
+##### パターン2: リポジトリ Private + Pages 社内限定
+
+```text
+Repository
+└─ Private
+
+GitLab Pages
+└─ VPN内のみ
+```
+
+社員にはアクセスを許可し、リポジトリのソースコードは非公開にする、社内ツールや社内ゲーム向けの構成です。
+
+```text
+社員だけ利用可能
+ソースコードは閲覧不可
+```
+
+##### パターン3: リポジトリ Private + Pages 認証必須
+
+```text
+Repository
+└─ Private
+
+GitLab Pages
+└─ GitLabログイン必須
+```
+
+アクセス時にGitLab認証を要求し、許可された利用者だけがPagesを表示できる構成です。
+
+```text
+Sign in with GitLab
+```
+
+##### 実際の運用例
+
+SE作成ツール、ノードエディタ、WebGPUアプリでは、次の構成が現実的です。
+
+```text
+Source
+└─ 社内GitLab Private
+
+Deploy
+└─ GitLab Pages Public
+```
+
+利用者は公開URLへアクセスするだけで利用できます。一方、次のような情報はPrivateリポジトリ内で管理できます。
+
+- TypeScript / Rustのソースコード
+- 学習データ
+- 社内ノウハウ
+
+##### 配信されるフロントエンドコードの注意点
+
+フロントエンドWebアプリの場合、ブラウザーへ配信されたJavaScriptは利用者が取得できます。
+
+```text
+RepositoryはPrivate
+  ↓
+ビルド済みJavaScriptをPagesへ配信
+  ↓
+利用者も配信済みコードを取得可能
+```
+
+そのため、次の情報をブラウザー側へ直接埋め込んではいけません。
+
+- APIキー
+- 機密ロジック
+- 社内情報
+
+これらはBackend API側で保護し、ブラウザーからは必要な処理だけを呼び出す構成にします。
+
+##### Webゲーム向けの推奨構成
+
+```text
+GitLab Repository
+└─ Private
+
+GitLab CI/CD
+└─ Build
+
+GitLab Pages
+└─ Public
+
+Backend API
+└─ 社内サーバー
+```
+
+この構成なら、ソース管理を非公開にしたまま、URLだけを配布してゲームやツールを公開できます。
+
+実際に利用できるかは、社内GitLab管理者がGitLab Pagesの公開範囲をどのように設定しているかに依存します。まず「PrivateプロジェクトからPublic Pagesを公開できるか」を確認してください。
+
+#### 事前確認
+
+社内GitLabでは、管理者に以下の項目を確認してください。
+
+- [ ] GitLab Pagesが有効か
+- [ ] PrivateプロジェクトからPublic Pagesを公開できるか
+- [ ] HTTPSが有効か
+- [ ] WebGPUを利用できる環境・ブラウザを提供しているか
+- [ ] Pagesの公開先URL形式
+- [ ] 最大アップロードサイズ
+- [ ] WASM配信時のMIMEタイプや圧縮設定
+
+特にWebGPUを利用する場合は、HTTPSまたはローカル環境での実行が必要です。PagesのHTTPS設定が有効か確認してください。
+
+社内GitLabのバージョンと実行環境が確定すれば、React + TypeScript + Rust/WASM向けの`.gitlab-ci.yml`を作成できます。
+
+### 14.5 自動デプロイ設定
 
 **Cloudflare Pagesの場合：**
 
@@ -2322,7 +2578,7 @@ Output Directory
 
 以降は `git push` するたびに自動更新されます。
 
-### 14.5 HTTPS必須
+### 14.6 HTTPS必須
 
 **WebGPUを使う場合、HTTPS で公開する必要があります。**
 
@@ -2332,7 +2588,7 @@ Output Directory
 ✗ http://game.com
 ```
 
-### 14.6 PWA化（推奨）
+### 14.7 PWA化（推奨）
 
 最近のWebゲームでは **インストール可能** にすることが増えています。
 
@@ -2377,7 +2633,7 @@ if ('serviceWorker' in navigator) {
 }
 ```
 
-### 14.7 あなたの構成なら
+### 14.8 あなたの構成なら
 
 以前話していた構成：
 
@@ -2422,7 +2678,7 @@ Cloudflare Pages 自動公開
 URL共有
 ```
 
-### 14.8 プロトタイプ公開の価値
+### 14.9 プロトタイプ公開の価値
 
 個人開発なら、次のような用途に相性が良いです：
 

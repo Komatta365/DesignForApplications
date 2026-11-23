@@ -1,0 +1,54 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Search TODOs with ripgrep",
+            "type": "shell",
+            "command": "rg",
+            "args": [
+                "--color=always",
+                "-n",
+                "TODO|FIXME|DOING|BUG|NOTE",
+                "docs/"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(.*)",
+                    "file": 1,
+                    "location": 2,
+                    "message": 3
+                }
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            "label": "Search TODOs (全プロジェクト)",
+            "type": "shell",
+            "command": "rg",
+            "args": ["--color=always", "-n", "TODO|FIXME|DOING|BUG|NOTE"],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(.*)",
+                    "file": 1,
+                    "location": 2,
+                    "message": 3
+                }
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        }
+    ]
+}
