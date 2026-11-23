@@ -3,7 +3,10 @@
 <style>
 a {
     text-decoration: none;
-    color: #464feb;
+    color: #0066ff;
+}
+a:hover {
+    text-decoration: underline;
 }
 tr th, tr td {
     border: 1px solid #e6e6e6;

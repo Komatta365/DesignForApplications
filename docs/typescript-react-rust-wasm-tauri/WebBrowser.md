@@ -1,5 +1,15 @@
 # Webブラウザーで動作させる最適解
 
+<style>
+a {
+    text-decoration: none;
+    color: #0066ff;
+}
+a:hover {
+    text-decoration: underline;
+}
+</style>
+
 ## 目次
 
 - [全体構成](#全体構成)

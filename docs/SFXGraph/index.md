@@ -1,5 +1,15 @@
 # SFXGraph
 
+<style>
+a {
+    text-decoration: none;
+    color: #0066ff;
+}
+a:hover {
+    text-decoration: underline;
+}
+</style>
+
 SFXGraph は、ゲーム用の効果音（SFX）を効率的に管理・処理するためのノードベースオーディオエディタです。
 
 ## 目次

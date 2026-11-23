@@ -1,5 +1,15 @@
 # Webブラウザでのゲーム開発
 
+<style>
+a {
+    text-decoration: none;
+    color: #0066ff;
+}
+a:hover {
+    text-decoration: underline;
+}
+</style>
+
 ## 目次
 
 - [1. 2026年のWebブラウザゲーム開発トレンド](#1-2026年のwebブラウザゲーム開発トレンド)

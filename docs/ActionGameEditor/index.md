@@ -1,5 +1,15 @@
 # ActionGameEditor
 
+<style>
+a {
+    text-decoration: none;
+    color: #0066ff;
+}
+a:hover {
+    text-decoration: underline;
+}
+</style>
+
 ActionGameEditor は、アクションゲームの制作を支援するための統合エディタです。ゲームロジック、キャラクター制御、イベント管理などをノードベースで直感的に設計できます。
 
 ## 目次

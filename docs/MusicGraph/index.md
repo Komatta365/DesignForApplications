@@ -1,5 +1,15 @@
 # MusicGraph
 
+<style>
+a {
+    text-decoration: none;
+    color: #0066ff;
+}
+a:hover {
+    text-decoration: underline;
+}
+</style>
+
 MusicGraph は、ゲーム用のBGMや楽曲を効率的に管理・編集するためのノードベースミュージックエディタです。
 
 ## 目次

@@ -1,5 +1,15 @@
 # 2DSpriteGraph
 
+<style>
+a {
+    text-decoration: none;
+    color: #0066ff;
+}
+a:hover {
+    text-decoration: underline;
+}
+</style>
+
 2DSpriteGraph は、2D スプライト画像を効率的に管理・編集するためのノードベースグラフエディタです。
 
 ## 目次

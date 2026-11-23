@@ -1,5 +1,15 @@
 # ドキュメント
 
+<style>
+a {
+    text-decoration: none;
+    color: #0066ff;
+}
+a:hover {
+    text-decoration: underline;
+}
+</style>
+
 ## 目次
 
 - [ドキュメント構成](#ドキュメント構成)
