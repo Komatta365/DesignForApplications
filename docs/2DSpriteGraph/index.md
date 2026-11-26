@@ -227,6 +227,7 @@ JSON + PNG出力
 ## 関連ドキュメント
 
 - [DesignForApplications 総合ガイド](index.md)
+- [Multi Reference IP-Adapter ガイド](Multi-Reference-IP-Adapter.md)
 - [TypeScript + Rust + Tauri ハイブリッドアーキテクチャ](typescript-react-rust-wasm-tauri/index.md)
 - [WebBrowser ゲーム開発](typescript-react-rust-wasm-tauri/WebBrowserGameDevelopment.md)
 - [SFXGraph - 効果音管理](SFXGraph/index.md)
