@@ -1,7 +1,7 @@
 {
     // Markdown
     "[markdown]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.formatOnSave": false
     },
     "markdown.editor.enabled": true,
     "markdown.validate.enabled": true,
