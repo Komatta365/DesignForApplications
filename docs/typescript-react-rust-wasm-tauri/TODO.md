@@ -27,6 +27,6 @@ TypeScript、React、Rust、WASM、Tauriを組み合わせたハイブリッド�
 ## 開発リンク
 
 - [TypeScript + React + Rust + WASM + Tauri](./index.md)
-- [Rust コア](./RustCore.md)
-- [Web ブラウザ](./WebBrowser.md)
-- [Web ブラウザゲーム開発](./WebBrowserGameDevelopment.md)
+- [Rust コア](./specs/RustCore.md)
+- [Web ブラウザ](./specs/WebBrowser.md)
+- [Web ブラウザゲーム開発](./specs/WebBrowserGameDevelopment.md)

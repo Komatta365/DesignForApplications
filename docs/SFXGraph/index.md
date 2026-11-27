@@ -311,8 +311,8 @@ SFXGraph は、以下の機能を提供します：
 
 ## 関連ドキュメント
 
-- [DesignForApplications 総合ガイド](index.md)
-- [TypeScript + Rust + Tauri ハイブリッドアーキテクチャ](typescript-react-rust-wasm-tauri/index.md)
-- [WebBrowser ゲーム開発](typescript-react-rust-wasm-tauri/WebBrowserGameDevelopment.md)
-- [2DSpriteGraph - スプライト管理](2DSpriteGraph/index.md)
-- [MusicGraph - 音楽管理](MusicGraph/index.md)
+- [DesignForApplications 総合ガイド](../index.md)
+- [TypeScript + Rust + Tauri ハイブリッドアーキテクチャ](../typescript-react-rust-wasm-tauri/index.md)
+- [WebBrowser ゲーム開発](../typescript-react-rust-wasm-tauri/specs/WebBrowserGameDevelopment.md)
+- [2DSpriteGraph - スプライト管理](../2DSpriteGraph/index.md)
+- [MusicGraph - 音楽管理](../MusicGraph/index.md)

@@ -226,10 +226,12 @@ JSON + PNG出力
 
 ## 関連ドキュメント
 
-- [DesignForApplications 総合ガイド](index.md)
-- [Multi Reference IP-Adapter ガイド](Multi-Reference-IP-Adapter.md)
-- [TypeScript + Rust + Tauri ハイブリッドアーキテクチャ](typescript-react-rust-wasm-tauri/index.md)
-- [WebBrowser ゲーム開発](typescript-react-rust-wasm-tauri/WebBrowserGameDevelopment.md)
-- [SFXGraph - 効果音管理](SFXGraph/index.md)
-- [MusicGraph - 音楽管理](MusicGraph/index.md)
-- [ActionGameEditor - アクションゲーム制作](ActionGameEditor/index.md)
+- [2頭身でポーズをつける](specs/2頭身でポーズをつける.md)
+- [複数の頭身のスケルトンを作成して、モーションを共有](specs/複数の頭身のスケルトンを作成してモーションを共有.md)
+- [DesignForApplications 総合ガイド](../index.md)
+- [Multi Reference IP-Adapter ガイド](specs/Multi-Reference-IP-Adapter.md)
+- [TypeScript + Rust + Tauri ハイブリッドアーキテクチャ](../typescript-react-rust-wasm-tauri/index.md)
+- [WebBrowser ゲーム開発](../typescript-react-rust-wasm-tauri/specs/WebBrowserGameDevelopment.md)
+- [SFXGraph - 効果音管理](../SFXGraph/index.md)
+- [MusicGraph - 音楽管理](../MusicGraph/index.md)
+- [ActionGameEditor - アクションゲーム制作](../ActionGameEditor/index.md)

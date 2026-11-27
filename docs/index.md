@@ -49,9 +49,9 @@ a:hover {
 
 #### 関連ドキュメント
 
-- [Rust Core](typescript-react-rust-wasm-tauri/RustCore.md) - アプリケーション中核ロジックの設計パターン
-- [Webブラウザーで動作させる最適解](typescript-react-rust-wasm-tauri/WebBrowser.md) - Web版とDesktop版の共有アーキテクチャ
-- [Webブラウザでのゲーム開発](typescript-react-rust-wasm-tauri/WebBrowserGameDevelopment.md) - 2026年標準のゲーム開発ガイド（WebGPU、AI統合、パフォーマンス最適化）
+- [Rust Core](typescript-react-rust-wasm-tauri/specs/RustCore.md) - アプリケーション中核ロジックの設計パターン
+- [Webブラウザーで動作させる最適解](typescript-react-rust-wasm-tauri/specs/WebBrowser.md) - Web版とDesktop版の共有アーキテクチャ
+- [Webブラウザでのゲーム開発](typescript-react-rust-wasm-tauri/specs/WebBrowserGameDevelopment.md) - 2026年標準のゲーム開発ガイド（WebGPU、AI統合、パフォーマンス最適化）
 
 ---
 

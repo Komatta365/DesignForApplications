@@ -1,5 +1,26 @@
 # Rust Core
 
+## 目次
+
+- [概要](#概要)
+- [想定するモジュール構成](#想定するモジュール構成)
+- [Rust Core に入れるもの](#rust-core-に入れるもの)
+  - [ノード実行エンジン](#ノード実行エンジン)
+  - [ワークフロー実行](#ワークフロー実行)
+  - [JSON Schema](#json-schema)
+  - [ポーズ補正](#ポーズ補正)
+- [Rust Core に入れないもの](#rust-core-に入れないもの)
+  - [React UI](#react-ui)
+  - [Tauri 固有処理](#tauri-固有処理)
+  - [Web API](#web-api)
+- [なぜ分けるのか](#なぜ分けるのか)
+  - [Web版](#web版)
+  - [Tauri版](#tauri版)
+  - [Server版](#server版)
+- [推奨する構成](#推奨する構成)
+
+---
+
 <style>
 a {
     text-decoration: none;
@@ -26,25 +47,6 @@ Rust Core 実装の進捗：
 - [ ] インテグレーションテスト
 - [ ] ドキュメント例の充実
 - [ ] デバッグツール開発
-
-## 目次
-
-- [概要](#概要)
-- [想定するモジュール構成](#想定するモジュール構成)
-- [Rust Core に入れるもの](#rust-core-に入れるもの)
-  - [ノード実行エンジン](#ノード実行エンジン)
-  - [ワークフロー実行](#ワークフロー実行)
-  - [JSON Schema](#json-schema)
-  - [ポーズ補正](#ポーズ補正)
-- [Rust Core に入れないもの](#rust-core-に入れないもの)
-  - [React UI](#react-ui)
-  - [Tauri 固有処理](#tauri-固有処理)
-  - [Web API](#web-api)
-- [なぜ分けるのか](#なぜ分けるのか)
-  - [Web版](#web版)
-  - [Tauri版](#tauri版)
-  - [Server版](#server版)
-- [推奨する構成](#推奨する構成)
 
 ---
 

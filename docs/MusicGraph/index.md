@@ -383,8 +383,8 @@ MusicGraph は、以下の機能を提供します：
 
 ## 関連ドキュメント
 
-- [DesignForApplications 総合ガイド](index.md)
-- [TypeScript + Rust + Tauri ハイブリッドアーキテクチャ](typescript-react-rust-wasm-tauri/index.md)
-- [2DSpriteGraph - スプライト管理](2DSpriteGraph/index.md)
-- [SFXGraph - 効果音管理](SFXGraph/index.md)
-- [ActionGameEditor - アクションゲーム制作](ActionGameEditor/index.md)
+- [DesignForApplications 総合ガイド](../index.md)
+- [TypeScript + Rust + Tauri ハイブリッドアーキテクチャ](../typescript-react-rust-wasm-tauri/index.md)
+- [2DSpriteGraph - スプライト管理](../2DSpriteGraph/index.md)
+- [SFXGraph - 効果音管理](../SFXGraph/index.md)
+- [ActionGameEditor - アクションゲーム制作](../ActionGameEditor/index.md)

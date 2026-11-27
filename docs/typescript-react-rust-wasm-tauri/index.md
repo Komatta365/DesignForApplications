@@ -77,9 +77,9 @@ tr th {
 
 ## 関連ドキュメント
 
-- [Rust Core](RustCore.md)
-- [Webブラウザーで動作させる最適解](WebBrowser.md)
-- [Webブラウザでのゲーム開発](WebBrowserGameDevelopment.md)
+- [Rust Core](specs/RustCore.md)
+- [Webブラウザーで動作させる最適解](specs/WebBrowser.md)
+- [Webブラウザでのゲーム開発](specs/WebBrowserGameDevelopment.md)
 
 ## 1. 概要
 
