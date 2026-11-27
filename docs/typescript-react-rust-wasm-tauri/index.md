@@ -25,7 +25,7 @@ tr th {
 
 - [x] 全体アーキテクチャ設計
 - [x] TypeScript/React セットアップ
-- [x] Rust Core 実装パターン
+- [x] Rust Core 実装パターン-
 - [x] WASM 連携方式
 - [x] Tauri 統合
 - [x] エラーハンドリング設計
