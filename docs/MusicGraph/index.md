@@ -33,6 +33,12 @@ MusicGraph 開発の進捗：
 ## 目次
 
 - [概要](#概要)
+- [ノードベースのBGM作成](#ノードベースのbgm作成)
+- [メロディーの改善](#メロディーの改善)
+- [現実装の評価](#現実装の評価)
+- [Composition層のノード構成](#composition層のノード構成)
+- [ノードごとの入出力型](#ノードごとの入出力型)
+- [TypeScriptの型定義](#typescriptの型定義)
 - [主な機能](#主な機能)
 - [音楽処理ノード](#音楽処理ノード)
 - [使用例](#使用例)
@@ -52,6 +58,75 @@ MusicGraph は、以下の機能を提供します：
 - **ループ・シーン処理** - ゲームシーンに応じた音楽フェード・切り替え
 - **メタデータ出力** - JSON形式での楽曲情報エクスポート
 - **適応型音楽対応** - インタラクティブなBGM設定
+
+## ノードベースのBGM作成
+
+コード進行、メロディ、ベース、ドラム、楽器、ミキサーなどをノードとして接続し、MIDIやゲーム用BGMを生成する設計です。
+
+```text
+テーマ → コード進行 → メロディ → アレンジ → 楽器 → MIDI → 音声出力
+```
+
+AIによる画像解析や感情抽出も、既存ノードへのパラメータ入力として統合できます。
+
+詳細は「[ノードベースのBGM作成](specs/ノードベースのBGM作成.md)」を参照してください。
+
+## メロディーの改善
+
+AIが生成したメロディーが単調になる問題に対して、Motif、Phrase、Counter Melody、Variation、Humanizerへ工程を分割します。
+
+```text
+モチーフ生成 → フレーズ展開 → 対旋律 → 変奏 → 演奏表現 → MIDI
+```
+
+感情カーブとフレーズライブラリを組み合わせ、AIには抽象的な作曲条件を生成させ、実際の音符構築はRust Coreで行います。
+
+詳細は「[メロディーの改善](specs/メロディーの改善.md)」を参照してください。
+
+## 現実装の評価
+
+現在の設計をインタラクティブミュージックエンジンとして評価し、Composition層を改善する方針を整理しています。
+
+特にMotif、Phrase、Variation、Counter Melody、Transitionを追加し、ゲームParameterからコード進行や楽曲構造を直接制御する構成を重視します。
+
+詳細は「[現実装の評価](specs/現実装の評価.md)」を参照してください。
+
+## Composition層のノード構成
+
+Composition層をMotif、Phrase、Variation、Counter Melody、Transitionなどの12ノードへ分解し、AIによる単調なメロディ生成ではなく、再現性のある作曲工程を構築します。
+
+```text
+Motif → Phrase → Variation → Counter Melody → Arrangement → Performance
+```
+
+Adaptive MelodyによってゲームParameterを音数、跳躍、装飾、Transitionへ直接接続する構成です。
+
+詳細は「[Composition層のノード構成](specs/Composition層のノード構成.md)」を参照してください。
+
+## ノードごとの入出力型
+
+ComfyUIと同様の型付きポートを採用し、SongData、PhraseData、NoteSequence、AudioDataなどの接続互換性を明示します。
+
+```text
+Theory → Composition → NoteSequence → Instrument → AudioData
+ParameterData → EnergyData → Composition
+```
+
+ゲーム状態を作曲そのものへ反映するため、MoodData、EnergyData、ArrangementData、TransitionDataも共通型として定義します。
+
+詳細は「[ノードごとの入出力型](specs/ノードごとの入出力型.md)」を参照してください。
+
+## TypeScriptの型定義
+
+`@kmusic/types`として共有するドメインモデルを定義し、Timeline、Theory、Composition、MIDI、Audio、Parameter、Workflowを一つの型体系で扱います。
+
+```typescript
+MusicIntent → MotifData → PhraseData → NoteSequence → AudioData
+```
+
+ReactFlow向けのPortDefinition、KNode、KMusicGraphと、AI ComposerからRust Coreへ渡すMusicIntentも含めます。
+
+詳細は「[TypeScriptの型定義](specs/TypeScriptの型定義.md)」を参照してください。
 
 ## 主な機能
 
@@ -383,6 +458,12 @@ MusicGraph は、以下の機能を提供します：
 
 ## 関連ドキュメント
 
+- [ノードベースのBGM作成](specs/ノードベースのBGM作成.md)
+- [メロディーの改善](specs/メロディーの改善.md)
+- [現実装の評価](specs/現実装の評価.md)
+- [Composition層のノード構成](specs/Composition層のノード構成.md)
+- [ノードごとの入出力型](specs/ノードごとの入出力型.md)
+- [TypeScriptの型定義](specs/TypeScriptの型定義.md)
 - [DesignForApplications 総合ガイド](../index.md)
 - [TypeScript + Rust + Tauri ハイブリッドアーキテクチャ](../typescript-react-rust-wasm-tauri/index.md)
 - [2DSpriteGraph - スプライト管理](../2DSpriteGraph/index.md)

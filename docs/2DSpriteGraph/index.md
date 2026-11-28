@@ -226,6 +226,7 @@ JSON + PNG出力
 
 ## 関連ドキュメント
 
+- [IP-Adapter](specs/IP-Adapter.md)
 - [2頭身でポーズをつける](specs/2頭身でポーズをつける.md)
 - [複数の頭身のスケルトンを作成して、モーションを共有](specs/複数の頭身のスケルトンを作成してモーションを共有.md)
 - [DesignForApplications 総合ガイド](../index.md)
